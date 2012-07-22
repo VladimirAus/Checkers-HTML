@@ -5,6 +5,7 @@ var CheckersGame = function() {
 	this.players = [new Player(),new Player()];
 	this.currentPlayerIndex = 0;
 	this.board = new Board();
+	this.moves = [];
 }
 
 // Board object
