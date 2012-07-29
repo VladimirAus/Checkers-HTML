@@ -4,13 +4,26 @@
 <meta charset="UTF-8">
 <title>Games for 2: Checkers</title>
 <script src="scripts/jquery-1.7.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
 <script src="scripts/jquery.mobile/jquery.mobile-1.1.1.min.js"></script>
 <script src="scripts/game.objects.js"></script>
+<script src="scripts/game.play.js"></script>
 <link href="css/checkers.css" rel="stylesheet" type="text/css">
 <link href="scripts/jquery.mobile/jquery.mobile-1.1.1.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-  
+
+<div id="app">
+    <div class="page" data-role="page" id="main" data-theme="c">
+    
+        <div data-role="header">
+            <h1>Checkers</h1>
+        </div><!-- /header -->
+    
+        <div data-role="content"><div id="board"></div></div>
+	</div>
+</div>
+
 </body>
 </html>

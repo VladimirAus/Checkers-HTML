@@ -1,3 +1,69 @@
 @charset "UTF-8";
 /* CSS Document */
 
+#board li {
+	list-style-image: none;
+	list-style-type: none;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #333;
+}
+
+.board-main {
+	height: 256px; /*32*8*/
+	width: 256px; /*32*8*/
+}
+
+.board-cell {
+	float: left;
+	text-align: center;
+}
+
+.board-row-first {
+	clear: both;
+}
+
+	.board-cell-color-white {
+		background-color: #ccc;
+	}
+	
+	.board-cell-color-black {
+		background-color: #333;
+	}
+	
+.checker {
+	width: 20px;
+	height: 20px;
+	
+	border: 2px solid #ccc;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	-webkit-box-shadow: #666 0px 2px 3px;
+	-moz-box-shadow: #666 0px 2px 3px;
+	box-shadow: #666 0px 2px 3px;
+	background: #000000;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#000000), to(#424242));
+	background: -webkit-linear-gradient(#000000, #424242);
+	background: -moz-linear-gradient(#000000, #424242);
+	background: -ms-linear-gradient(#000000, #424242);
+	background: -o-linear-gradient(#000000, #424242);
+	background: linear-gradient(#000000, #424242);
+}
+
+.checker-white {
+	border: 2px solid #333;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	-webkit-box-shadow: #666 0px 2px 3px;
+	-moz-box-shadow: #666 0px 2px 3px;
+	box-shadow: #666 0px 2px 3px;
+	background: #fff;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fff), to(#b8b8b8));
+	background: -webkit-linear-gradient(#fff, #b8b8b8);
+	background: -moz-linear-gradient(#fff, #b8b8b8);
+	background: -ms-linear-gradient(#fff, #b8b8b8);
+	background: -o-linear-gradient(#fff, #b8b8b8);
+	background: linear-gradient(#fff, #b8b8b8);
+}
