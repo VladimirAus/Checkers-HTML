@@ -4,14 +4,14 @@
 #board li {
 	list-style-image: none;
 	list-style-type: none;
-	width: 30px;
-	height: 30px;
+	width: 40px;
+	height: 40px;
 	border: 1px solid #333;
 }
 
 .board-main {
-	height: 256px; /*32*8*/
-	width: 256px; /*32*8*/
+	height: 336px; /*32*8*/
+	width: 336px; /*32*8*/
 }
 
 .board-cell {
@@ -32,13 +32,13 @@
 	}
 	
 .checker {
-	width: 20px;
-	height: 20px;
+	width: 30px;
+	height: 30px;
 	
 	border: 2px solid #ccc;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
 	-webkit-box-shadow: #666 0px 2px 3px;
 	-moz-box-shadow: #666 0px 2px 3px;
 	box-shadow: #666 0px 2px 3px;
@@ -53,9 +53,9 @@
 
 .checker-white {
 	border: 2px solid #333;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
 	-webkit-box-shadow: #666 0px 2px 3px;
 	-moz-box-shadow: #666 0px 2px 3px;
 	box-shadow: #666 0px 2px 3px;

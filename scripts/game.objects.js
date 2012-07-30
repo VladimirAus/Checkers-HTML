@@ -26,6 +26,7 @@ CheckersGame.prototype.drawGame = function() {
 		for (playerCheckerIndex in player.checkers) {
 			var playerChecker = player.checkers[playerCheckerIndex];
 			var checker = $('<div>', {}).addClass('checker checker-' + (player.isWhite?'white':'black'));
+			
 			//var testCheckerB = $('<div>', {}).addClass('checker checker-black');
 					
 			this.board.getBoard().find('.board-cell-' + playerChecker.currentPosition).append(checker);
@@ -37,6 +38,8 @@ CheckersGame.prototype.drawGame = function() {
 					containment: ".board-main",
 					scroll: false
 				});
+			checker.addTouch();
+			//checker
 		}
 	}
 		
