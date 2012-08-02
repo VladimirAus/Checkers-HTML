@@ -33,23 +33,77 @@ CheckersGame.prototype.drawGame = function() {
 			//alert(playerChecker.currentPosition);
 			//elemBoard.find('.board-cell-h8').append(testCheckerB);
 			
-			checker.draggable({
-					cursor: "move",
-					containment: ".board-main",
-					scroll: false
-				});
-			checker.addTouch();
+			this.makeDraggable(checker);
+			
 			//checker
 		}
 	}
 		
-	/*
-	testCheckerB.draggable({
+	$(".board-cell").droppable({
+		drop: function( event, ui ) {
+				/*
+				$( this ).addClass( "ui-state-highlight" )
+					.find( "p" )
+						.html( "Dropped!" );*/
+				
+				//alert('boo');
+				// Validity
+				// 1. Check for cell color
+				if ($(this).hasClass( 'board-cell-color-black' )) {
+					return;
+				}
+				
+				if ($(this).find('.checker').length > 0) {
+					return;
+				}
+				
+				// if legal
+				
+				var uiElem = $(ui.draggable)[0];
+				$(uiElem).draggable("option", "revert", false);
+				
+				$(uiElem).attr("style", "");
+				$(this).html($(uiElem).parent().html());
+				$(uiElem).parent().html("");
+				//this.makeDraggable($(this).find('.checker'));
+				
+				$(this).find('.checker').draggable({
+					cursor: "move",
+					containment: ".board-main",
+					scroll: false,
+					revert: true,
+					snap: ".board-cell", // maybe remove for mobile
+					stop: function(event, ui) {
+						if (!$(ui.helper).draggable("option", "revert")) {
+						}
+						$(ui.helper).draggable("option", "revert", true);
+						//alert($(ui.helper).draggable("option", "revert"));
+					}
+				});
+				
+				// update game details
+				
+		}
+	});
+}
+
+CheckersGame.prototype.makeDraggable = function(checker) {
+	checker.draggable({
 			cursor: "move",
 			containment: ".board-main",
-			scroll: false
+			scroll: false,
+			revert: true,
+			snap: ".board-cell", // maybe remove for mobile
+			stop: function(event, ui) {
+				if (!$(ui.helper).draggable("option", "revert")) {
+				}
+				$(ui.helper).draggable("option", "revert", true);
+				//alert($(ui.helper).draggable("option", "revert"));
+			}
 		});
-	*/
+	checker.addTouch(); //mobile fix
+	
+	//return checker;
 }
 
 CheckersGame.prototype.gameLoop = function() {

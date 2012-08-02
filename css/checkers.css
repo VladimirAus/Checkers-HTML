@@ -4,14 +4,15 @@
 #board li {
 	list-style-image: none;
 	list-style-type: none;
-	width: 40px;
-	height: 40px;
+	width: 35px;
+	height: 35px;
 	border: 1px solid #333;
 }
 
 .board-main {
 	height: 336px; /*32*8*/
 	width: 336px; /*32*8*/
+	padding: 0;
 }
 
 .board-cell {
@@ -32,8 +33,8 @@
 	}
 	
 .checker {
-	width: 30px;
-	height: 30px;
+	width: 28px;
+	height: 28px;
 	
 	border: 2px solid #ccc;
 	-webkit-border-radius: 30px;
