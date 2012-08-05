@@ -9,8 +9,8 @@ var CheckersGame = function() {
 	this.board = new Board();
 	this.moves = [];
 	
-	var arWhitePos = ['a7', 'a5', 'a3', 'a1', 'b8', 'b6', 'b4', 'b2', 'c7', 'c5', 'c3', 'c1'];
-	var arBlackPos = ['h8', 'h6', 'h4', 'h2', 'g7', 'g5', 'g3', 'g1', 'f8', 'f6', 'f4', 'f2'];
+	var arWhitePos = ['g1', 'e1', 'c1', 'a1', 'h2', 'f2', 'd2', 'b2', 'g3', 'e3', 'c3', 'a3'];
+	var arBlackPos = ['h8', 'f8', 'd8', 'b8', 'g7', 'e7', 'c7', 'a7', 'h6', 'f6', 'd6', 'b6'];
 	this.players[0].generateFigures(arWhitePos);
 	this.players[1].generateFigures(arBlackPos);
 	
@@ -25,7 +25,9 @@ CheckersGame.prototype.drawGame = function() {
 		//alert(player.checkers.length);
 		for (playerCheckerIndex in player.checkers) {
 			var playerChecker = player.checkers[playerCheckerIndex];
-			var checker = $('<div>', {}).addClass('checker checker-' + (player.isWhite?'white':'black'));
+			var checker = $('<div>', {}).addClass('checker checker-' + (player.isWhite?'white':'black'))
+							.attr('cell', playerChecker.currentPosition)
+							.attr('checkerColor', (player.isWhite?'white':'black'));
 			
 			//var testCheckerB = $('<div>', {}).addClass('checker checker-black');
 					
@@ -41,32 +43,54 @@ CheckersGame.prototype.drawGame = function() {
 		
 	$(".board-cell").droppable({
 		drop: function( event, ui ) {
-				/*
-				$( this ).addClass( "ui-state-highlight" )
-					.find( "p" )
-						.html( "Dropped!" );*/
 				
-				//alert('boo');
+				var uiElem = $(ui.draggable)[0]; // get checker
+				var uiChecker = $($(ui.draggable)[0]);
+				var uiCell = $(this);
+				
 				// Validity
 				// 1. Check for cell color
-				if ($(this).hasClass( 'board-cell-color-black' )) {
+				if (uiCell.hasClass( 'board-cell-color-black' )) {
 					return;
 				}
 				
-				if ($(this).find('.checker').length > 0) {
+				// 2. Check if no other checkers on the same spot
+				if (uiCell.find('.checker').length > 0) {
 					return;
 				}
+				
+				// 3. Check current player
+				
+				
+				// 4. Check legality of simple move: direction and jump
+				var letterDir = (uiChecker.attr("checkerColor") == 'white')?-1:1;
+				var newCell = (uiChecker.attr("cell"));
+				var oldCell = (uiCell.attr("cellId"));
+				if ((letterDir * (parseInt(newCell.charAt(1)) - parseInt(oldCell.charAt(1)))) != 1)  // vertical
+				{
+					console.log('vert: ' +oldCell.charAt(1) +'; '+newCell.charAt(1)+ ';' + (letterDir * (parseInt(newCell.charAt(1)) - parseInt(oldCell.charAt(1)))));
+					return;
+				}
+				
+				if ((Math.abs(parseInt(newCell.charCodeAt(0)) - parseInt(oldCell.charCodeAt(0)))) != 1) // horizontal
+				{
+					console.log('horiz');
+					return;
+				}
+				
+				// 5. Check legality of taking other checker: opposite color and correct direction
 				
 				// if legal
 				
-				var uiElem = $(ui.draggable)[0];
-				$(uiElem).draggable("option", "revert", false);
 				
-				$(uiElem).attr("style", "");
-				$(this).html($(uiElem).parent().html());
-				$(uiElem).parent().html("");
+				uiChecker.draggable("option", "revert", false);
+				
+				uiChecker.attr("style", "");
+				uiCell.html(uiChecker.parent().html());
+				uiChecker.parent().html("");
 				//this.makeDraggable($(this).find('.checker'));
 				
+				// TODO: make it user oiginal makeDraggable function
 				$(this).find('.checker').draggable({
 					cursor: "move",
 					containment: ".board-main",
@@ -142,10 +166,12 @@ Board.prototype.initBoard = function() {
 		//							.addClass('board-row-' + row);
 		//for(
 		for (var cell = 1; cell <= 8; cell++) {
+			var cellId = String.fromCharCode(cell + 96) + (9-row);
 			elemBoardCell = $('<li>', {}).addClass('board-cell')
 										.addClass('board-cell-color-'+(((row*8 + cell + ((row %2 ==0)?1:0) ) % 2 == 0)?'white':'black'))
-										.addClass('board-cell-' + String.fromCharCode(9-row + 96) + cell)
-										.addClass('board-row-'  + 9-row);
+										.addClass('board-cell-' + cellId)
+										.addClass('board-row-'  + 9-row)
+										.attr('cellId', cellId);
 			if (cell == 1) {
 				elemBoardCell.addClass('board-row-first');
 			}
