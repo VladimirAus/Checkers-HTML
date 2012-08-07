@@ -15,14 +15,26 @@
 	padding: 0;
 }
 
+.board-cell-letter,
 .board-cell {
 	float: left;
 	text-align: center;
 }
 
+li.board-cell-letter {
+	border-color: transparent !important;
+	border: 1px solid transparent !important;
+}
+
 .board-row-first {
 	clear: both;
 }
+/*
+.cell-no-number {
+	text-align: left;
+	padding-top: 3px;
+}
+*/
 
 	.board-cell-color-white {
 		background-color: #ccc;
@@ -67,4 +79,8 @@
 	background: -ms-linear-gradient(#fff, #b8b8b8);
 	background: -o-linear-gradient(#fff, #b8b8b8);
 	background: linear-gradient(#fff, #b8b8b8);
+}
+
+.checker-kinged {
+	border: 3px solid gold;
 }

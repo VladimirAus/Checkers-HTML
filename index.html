@@ -20,10 +20,14 @@
     <div class="page" data-role="page" id="main" data-theme="c">
     
         <div data-role="header">
-            <h1>Checkers</h1>
+            <h1>Checkers [<a href="http://en.wikipedia.org/wiki/English_draughts" target="_blank">rules</a>]</h1>
         </div><!-- /header -->
     
-        <div data-role="content"><div id="board"></div></div>
+        <div data-role="content"><div id="board"></div>
+        Current player: <span id="game-current-player">white</span>
+        <input type="button" name="game-end-turn" id="game-end-turn" value="End turn" /><br />
+        <input type="button" name="game-reset" id="game-reset" onClick="javascript:location.reload();" value="Reset game" />
+        </div>
 	</div>
 </div>
 
